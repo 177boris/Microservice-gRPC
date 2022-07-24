@@ -7,15 +7,6 @@ import (
 	_ "github.com/lib/pq"
 )
 
-var schema = `
-CREATE TABLE public.users (
-	id serial NOT NULL,
-	username varchar(128) NULL,
-	"password" varchar(256) NULL,
-	CONSTRAINT users_pkey PRIMARY KEY (id)
-	);`
-
-
 var DB *sqlx.DB
 
 // ConnectDB to get all needed db connections for application
@@ -36,12 +27,11 @@ func getDBConnection() *sqlx.DB {
 		"postgres",
 		"postgres",
 	)
-	
 
 	db, err := sqlx.Open("postgres", dbConnectionStr)
 
 	//db.MustExec(schema)
-	
+
 	if err != nil {
 		panic(err)
 	}

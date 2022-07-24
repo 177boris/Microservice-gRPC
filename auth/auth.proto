@@ -2,6 +2,8 @@
 // which gives us the response we need when we call some 
 // procedure from the client-side (main-service). 
 
+// using protobuf v3 and the auth package 
+
 
 syntax = "proto3";
 package auth;
@@ -43,3 +45,4 @@ service AuthService {
     rpc Login(LoginRequest) returns (LoginResponse) {}
     rpc ValidateToken(ValidateTokenRequest) returns (ValidateTokenResponse) {}
 }
+

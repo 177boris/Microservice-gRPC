@@ -2,8 +2,6 @@ package repository
 
 import (
 	"auth/models"
-	"database/sql"
-	"log"
 
 	"github.com/jmoiron/sqlx"
 )
@@ -28,5 +26,5 @@ func (userRepository *userRepository) CreateUser(username string, password strin
 }
 
 func (userRepository *userRepository) GetUserByUsername(username string) (models.User, error) {
-  return models.User{}, nil
+	return models.User{}, nil
 }

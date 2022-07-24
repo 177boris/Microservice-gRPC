@@ -1,12 +1,7 @@
 package usecase
 
 import (
-	"auth/models"
 	"auth/repository"
-	"auth/utils"
-	"encoding/json"
-	"errors"
-	"log"
 )
 
 type userUsecase struct {
