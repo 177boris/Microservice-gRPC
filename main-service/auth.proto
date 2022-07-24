@@ -1,0 +1,48 @@
+// The generated code will be used as the server part of gRPC, 
+// which gives us the response we need when we call some 
+// procedure from the client-side (main-service). 
+
+// using protobuf v3 and the auth package 
+
+
+syntax = "proto3";
+package auth;
+option go_package = "/auth";
+
+
+message RegisterRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message RegisterResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message LoginRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    bool success = 1;
+    string message = 2;
+    string token = 3;
+}
+
+message ValidateTokenRequest {
+    string token = 1;
+}
+
+message ValidateTokenResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+service AuthService {
+    rpc Register(RegisterRequest) returns (RegisterResponse) {}
+    rpc Login(LoginRequest) returns (LoginResponse) {}
+    rpc ValidateToken(ValidateTokenRequest) returns (ValidateTokenResponse) {}
+}
+
