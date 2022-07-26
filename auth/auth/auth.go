@@ -2,6 +2,7 @@ package auth
 
 import (
 	"auth/usecase"
+	"log"
 
 	"golang.org/x/net/context"
 )
@@ -19,13 +20,28 @@ func InitServer(userUsecase usecase.UserUsecase) Server {
 }
 
 func (s *Server) Register(ctx context.Context, request *RegisterRequest) (*RegisterResponse, error) {
-	return &RegisterResponse{Success: true, Message: "Succeed to register"}, nil
+	_, err := s.userUsecase.Register(request.Username, request.Password)
+	if err != nil {
+		log.Println("Error registering user", err)
+		return &RegisterResponse{Success: false, Message: "Failed to register"}, err
+	}
+	return &RegisterResponse{Success: true, Message: "Registration successful"}, nil
 }
 
 func (s *Server) Login(ctx context.Context, request *LoginRequest) (*LoginResponse, error) {
-	return &LoginResponse{Success: true, Message: "Login success", Token: ""}, nil
+	token, err := s.userUsecase.Login(request.Username, request.Password)
+	if err != nil {
+		log.Println("Error registering user", err)
+		return &LoginResponse{Success: false, Message: "Failed to login", Token: ""}, err
+	}
+	return &LoginResponse{Success: true, Message: "Login success", Token: token}, nil
 }
 
 func (s *Server) ValidateToken(ctx context.Context, request *ValidateTokenRequest) (*ValidateTokenResponse, error) {
-	return &ValidateTokenResponse{Success: true, Message: ""}, nil
+	result, err := s.userUsecase.ValidateToken(request.Token)
+	if err != nil {
+		log.Println("Error validating token", err)
+		return &ValidateTokenResponse{Success: false, Message: "Invalid token"}, err
+	}
+	return &ValidateTokenResponse{Success: true, Message: result}, nil
 }
