@@ -28,13 +28,13 @@ func InitUserUsecase(userRepository repository.UserRepository) UserUsecase {
 func (userUsecase *userUsecase) Register(username, password string) (bool, error) {
 	hashedPassword, err := utils.HashPassword(password)
 	if err != nil {
-		log.Println("Error to register user: ", err)
+		log.Println("Error registering user: ", err)
 		return false, err
 	}
 
 	_, err = userUsecase.userRepository.CreateUser(username, hashedPassword)
 	if err != nil {
-		log.Println("Error to register user: ", err)
+		log.Println("Error registering user: ", err)
 		return false, err
 	}
 
@@ -44,7 +44,7 @@ func (userUsecase *userUsecase) Register(username, password string) (bool, error
 func (userUsecase *userUsecase) Login(username, password string) (string, error) {
 	user, err := userUsecase.userRepository.GetUserByUsername(username)
 	if err != nil {
-		log.Println("Error to get user by username", err)
+		log.Println("Error getting user by username", err)
 	}
 	ok := utils.CheckPasswordHash(password, user.Password)
 	if !ok {
@@ -56,7 +56,7 @@ func (userUsecase *userUsecase) Login(username, password string) (string, error)
 		Username: user.Username,
 	})
 	if err != nil {
-		log.Println("Error to login", err)
+		log.Println("Login error", err)
 	}
 	return tokenString, nil
 }
@@ -64,12 +64,12 @@ func (userUsecase *userUsecase) Login(username, password string) (string, error)
 func (userUsecase *userUsecase) ValidateToken(token string) (string, error) {
 	user, err := utils.ParseToken(token)
 	if err != nil {
-		log.Println("Error to validate token", err)
+		log.Println("Error validating token", err)
 		return "", err
 	}
 	result, err := json.Marshal(&user)
 	if err != nil {
-		log.Println("Error to validate token", err)
+		log.Println("Error validating token", err)
 		return "", err
 	}
 	return string(result), nil
