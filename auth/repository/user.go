@@ -2,6 +2,8 @@ package repository
 
 import (
 	"auth/models"
+	"database/sql"
+	"log"
 
 	"github.com/jmoiron/sqlx"
 )
@@ -22,9 +24,62 @@ func InitUserRepository(db *sqlx.DB) UserRepository {
 }
 
 func (userRepository *userRepository) CreateUser(username string, password string) (bool, error) {
-	return true, nil
+	var err error
+	var result bool
+
+	tx, errTx := userRepository.db.Begin()
+	if errTx != nil {
+		log.Println("Error creating user: ", errTx)
+	} else {
+		err = insertUser(tx, username, password)
+		if err != nil {
+			log.Println("Error creating user: ", err)
+		}
+	}
+	if err == nil {
+		result = true
+		tx.Commit()
+	} else {
+		result = false
+		tx.Rollback()
+		log.Println("Error creating user: ", err)
+	}
+
+	return result, err
+}
+
+func insertUser(tx *sql.Tx, username string, password string) error {
+	_, err := tx.Exec(`
+	INSERT INTO users (
+		username, 
+		password
+	)
+	VALUES(
+		$1,
+		$2 
+	); 
+	`,
+		username,
+		password,
+	)
+
+	return err
 }
 
 func (userRepository *userRepository) GetUserByUsername(username string) (models.User, error) {
-	return models.User{}, nil
+
+	var user models.User
+	var id int64
+
+	err := userRepository.db.QueryRow(`
+			SELECT id, username, password FROM users WHERE username = $1;
+			`, username).Scan(&id, &(user.Username), &(user.Password))
+
+	user.ID = id
+
+	if err != nil {
+		log.Println("Error getting user by username", err)
+	}
+
+	return user, err
 }
