@@ -37,4 +37,42 @@ def create_todo():
         except Exception as error:
             return render_template('todo/create.html', error=str(error))
     return render_template('todo/create.html')
-    
+
+
+
+@todo_blueprint.route('/get/<int:todo_id>', methods=['GET'])
+@token_required
+def get_todo(todo_id):
+    try:
+        user_data = session['user_data']
+        client = TodoClient()
+        result = client.get_todo(item_id=todo_id, user_id=user_data.get('ID'))
+        data = json.loads(result.data)
+        return render_template('todo/item.html', todo=data)
+    except Exception as error:
+        return render_template('todo/item.html', error=str(error))
+
+
+@todo_blueprint.route('/update/<int:todo_id>', methods=['POST'])
+@token_required
+def update_todo(todo_id):
+    try:
+        user_data = session['user_data']
+        client = TodoClient()
+        result_update = client.update_todo(todo_id, request.form['title'], request.form['description'])
+        result_get = client.get_todo(todo_id, user_data.get('ID'))
+        data = json.loads(result_get.data)
+        return render_template('todo/item.html', todo=data)
+    except Exception as error:
+        return render_template('todo/item.html', error=str(error))
+
+
+@todo_blueprint.route('/delete/<int:todo_id>', methods=['GET'])
+@token_required
+def delete_todo(todo_id):
+    try:
+        client = TodoClient()
+        result = client.delete_todo(todo_id)
+        return redirect(url_for('todo_blueprint.get_todos'))
+    except Exception as error:
+        return render_template('todo/item.html', error=str(error))

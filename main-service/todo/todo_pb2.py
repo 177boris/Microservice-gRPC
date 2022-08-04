@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\ntodo.proto\x12\x04todo\"G\n\x11\x43reateTodoRequest\x12\x0e\n\x06userID\x18\x01 \x01(\x03\x12\r\n\x05title\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\"6\n\x12\x43reateTodoResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\"!\n\x0fGetTodosRequest\x12\x0e\n\x06userID\x18\x01 \x01(\x03\"B\n\x10GetTodosResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\t\"C\n\x11UpdateTodoRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\r\n\x05title\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\"6\n\x12UpdateTodoResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\"\x1f\n\x11\x44\x65leteTodoRequest\x12\n\n\x02id\x18\x01 \x01(\x03\"6\n\x12\x44\x65leteTodoResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t2\x93\x02\n\x0bTodoService\x12\x41\n\nCreateTodo\x12\x17.todo.CreateTodoRequest\x1a\x18.todo.CreateTodoResponse\"\x00\x12;\n\x08GetTodos\x12\x15.todo.GetTodosRequest\x1a\x16.todo.GetTodosResponse\"\x00\x12\x41\n\nUpdateTodo\x12\x17.todo.UpdateTodoRequest\x1a\x18.todo.UpdateTodoResponse\"\x00\x12\x41\n\nDeleteTodo\x12\x17.todo.DeleteTodoRequest\x1a\x18.todo.DeleteTodoResponse\"\x00\x42\x07Z\x05/todob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\ntodo.proto\x12\x04todo\"G\n\x11\x43reateTodoRequest\x12\x0e\n\x06userID\x18\x01 \x01(\x03\x12\r\n\x05title\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\"6\n\x12\x43reateTodoResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\"!\n\x0fGetTodosRequest\x12\x0e\n\x06userID\x18\x01 \x01(\x03\"B\n\x10GetTodosResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\t\"0\n\x0eGetTodoRequest\x12\x0e\n\x06itemID\x18\x01 \x01(\x03\x12\x0e\n\x06userID\x18\x02 \x01(\x03\"A\n\x0fGetTodoResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\t\"C\n\x11UpdateTodoRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\r\n\x05title\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\"6\n\x12UpdateTodoResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\"\x1f\n\x11\x44\x65leteTodoRequest\x12\n\n\x02id\x18\x01 \x01(\x03\"6\n\x12\x44\x65leteTodoResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t2\xcd\x02\n\x0bTodoService\x12\x41\n\nCreateTodo\x12\x17.todo.CreateTodoRequest\x1a\x18.todo.CreateTodoResponse\"\x00\x12;\n\x08GetTodos\x12\x15.todo.GetTodosRequest\x1a\x16.todo.GetTodosResponse\"\x00\x12\x38\n\x07GetTodo\x12\x14.todo.GetTodoRequest\x1a\x15.todo.GetTodoResponse\"\x00\x12\x41\n\nUpdateTodo\x12\x17.todo.UpdateTodoRequest\x1a\x18.todo.UpdateTodoResponse\"\x00\x12\x41\n\nDeleteTodo\x12\x17.todo.DeleteTodoRequest\x1a\x18.todo.DeleteTodoResponse\"\x00\x42\x07Z\x05/todob\x06proto3')
 
 
 
@@ -22,6 +22,8 @@ _CREATETODOREQUEST = DESCRIPTOR.message_types_by_name['CreateTodoRequest']
 _CREATETODORESPONSE = DESCRIPTOR.message_types_by_name['CreateTodoResponse']
 _GETTODOSREQUEST = DESCRIPTOR.message_types_by_name['GetTodosRequest']
 _GETTODOSRESPONSE = DESCRIPTOR.message_types_by_name['GetTodosResponse']
+_GETTODOREQUEST = DESCRIPTOR.message_types_by_name['GetTodoRequest']
+_GETTODORESPONSE = DESCRIPTOR.message_types_by_name['GetTodoResponse']
 _UPDATETODOREQUEST = DESCRIPTOR.message_types_by_name['UpdateTodoRequest']
 _UPDATETODORESPONSE = DESCRIPTOR.message_types_by_name['UpdateTodoResponse']
 _DELETETODOREQUEST = DESCRIPTOR.message_types_by_name['DeleteTodoRequest']
@@ -53,6 +55,20 @@ GetTodosResponse = _reflection.GeneratedProtocolMessageType('GetTodosResponse', 
   # @@protoc_insertion_point(class_scope:todo.GetTodosResponse)
   })
 _sym_db.RegisterMessage(GetTodosResponse)
+
+GetTodoRequest = _reflection.GeneratedProtocolMessageType('GetTodoRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETTODOREQUEST,
+  '__module__' : 'todo_pb2'
+  # @@protoc_insertion_point(class_scope:todo.GetTodoRequest)
+  })
+_sym_db.RegisterMessage(GetTodoRequest)
+
+GetTodoResponse = _reflection.GeneratedProtocolMessageType('GetTodoResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETTODORESPONSE,
+  '__module__' : 'todo_pb2'
+  # @@protoc_insertion_point(class_scope:todo.GetTodoResponse)
+  })
+_sym_db.RegisterMessage(GetTodoResponse)
 
 UpdateTodoRequest = _reflection.GeneratedProtocolMessageType('UpdateTodoRequest', (_message.Message,), {
   'DESCRIPTOR' : _UPDATETODOREQUEST,
@@ -95,14 +111,18 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _GETTODOSREQUEST._serialized_end=182
   _GETTODOSRESPONSE._serialized_start=184
   _GETTODOSRESPONSE._serialized_end=250
-  _UPDATETODOREQUEST._serialized_start=252
-  _UPDATETODOREQUEST._serialized_end=319
-  _UPDATETODORESPONSE._serialized_start=321
-  _UPDATETODORESPONSE._serialized_end=375
-  _DELETETODOREQUEST._serialized_start=377
-  _DELETETODOREQUEST._serialized_end=408
-  _DELETETODORESPONSE._serialized_start=410
-  _DELETETODORESPONSE._serialized_end=464
-  _TODOSERVICE._serialized_start=467
-  _TODOSERVICE._serialized_end=742
+  _GETTODOREQUEST._serialized_start=252
+  _GETTODOREQUEST._serialized_end=300
+  _GETTODORESPONSE._serialized_start=302
+  _GETTODORESPONSE._serialized_end=367
+  _UPDATETODOREQUEST._serialized_start=369
+  _UPDATETODOREQUEST._serialized_end=436
+  _UPDATETODORESPONSE._serialized_start=438
+  _UPDATETODORESPONSE._serialized_end=492
+  _DELETETODOREQUEST._serialized_start=494
+  _DELETETODOREQUEST._serialized_end=525
+  _DELETETODORESPONSE._serialized_start=527
+  _DELETETODORESPONSE._serialized_end=581
+  _TODOSERVICE._serialized_start=584
+  _TODOSERVICE._serialized_end=917
 # @@protoc_insertion_point(module_scope)
